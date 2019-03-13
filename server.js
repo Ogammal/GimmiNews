@@ -36,10 +36,16 @@ mongoose.connect(MONGODB_URI);
 
 var articles = []
 
-    app.get("/", function(req, res) {
-        res.render("index", { article: articles });
-    });
-
+app.get("/", function(req, res) {
+    db.Article.find({}, function(err, found) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        res.render("index", { article: found })
+      }
+    })
+});
     app.get("/saved", function(req, res) {
     res.render("saved", { article: articles });
     });
@@ -76,9 +82,7 @@ app.get("/scrape", function(req, res) {
             console.log(err);
         });
     });
-
-    // Send a message to the client
-    res.send("Scrape Complete");
+        res.redirect("/")
     });
 });
 
