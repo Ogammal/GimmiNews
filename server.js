@@ -47,7 +47,7 @@ var articles = []
 // A GET route for scraping the New York Times website
 app.get("/scrape", function(req, res) {
     // First, we grab the body of the html with axios
-    axios.get("http://echojs.com/").then(function(response) {
+    axios.get("https://www.echojs.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
